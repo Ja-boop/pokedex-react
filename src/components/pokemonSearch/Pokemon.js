@@ -72,7 +72,7 @@ const Pokemon = () => {
                             <div className="pokemon-types-container">
                                 <div className="pokemon-types">
                                     {data.tipos.map(tipo => (
-                                        <img className="type-img" src={POKEMON_TIPOS[tipo]} alt={tipo} key={tipo} />
+                                        <img className="type-img" src={POKEMON_TIPOS[tipo.names[4].name]} alt={tipo.names[4].name} key={tipo.id} />
                                     ))}
                                 </div>
                             </div>
@@ -86,9 +86,7 @@ const Pokemon = () => {
 
 
                                     {data.habilidades.map(habilidad => (
-
-                                        <span>{habilidad}</span>
-
+                                        <span key={habilidad.id} >{habilidad.names[5].name}</span>
                                     ))}
 
                                 </div>
@@ -112,7 +110,7 @@ const Pokemon = () => {
                         scaleOnDrag={false}
                     >
                         {data.evoluciones.map(evolucion => (
-                            <div className="slide-caption-image">
+                            <div className="slide-caption-image" key={evolucion.id}>
                                 <img src={evolucion.sprites.other['official-artwork'].front_default || evolucion.sprites.front_default} key={evolucion.id} alt={evolucion.name} />
                             </div>
                         ))}
@@ -122,7 +120,7 @@ const Pokemon = () => {
 
                 <div className="evolutions-container">
                     {data.evoluciones.map(evolucion => (
-                        <div className="result-pokemon-container">
+                        <div className="result-pokemon-container" key={evolucion.id} >
                             <img className="evolution-img" src={evolucion.sprites.other['official-artwork'].front_default || evolucion.sprites.front_default} key={evolucion.id} alt={evolucion.name} />
                         </div>
                     ))}

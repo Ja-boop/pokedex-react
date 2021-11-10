@@ -140,7 +140,7 @@ async function getPokemonTypes(getResource, resource) {
 
     for (let i = 0; i < resource.types.length; i++) {
         const type = await getResource(resource.types[i].type.url);
-        POKEMON_TYPES.push(type.names[4].name)
+        POKEMON_TYPES.push(type)
     }
 
     return POKEMON_TYPES;
@@ -151,7 +151,7 @@ async function getPokemonAbilities(getResource, resource) {
 
     for (let i = 0; i < resource.abilities.length; i++) {
         const abilitie = await getResource(resource.abilities[i].ability.url);
-        POKEMON_ABILITIES.push(abilitie.names[5].name);
+        POKEMON_ABILITIES.push(abilitie);
     }
 
     return POKEMON_ABILITIES;
