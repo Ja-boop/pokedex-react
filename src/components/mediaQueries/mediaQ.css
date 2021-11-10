@@ -1,0 +1,188 @@
+@media only screen and (min-width: 768px) {
+    .search-bar {
+        height: 40px;
+    }
+
+
+    .wrapper {
+        grid-template-columns: 200px 200px 200px;
+	    grid-template-rows: 313px 313px 313px 313px 313px;
+        gap: 30px 30px;
+        grid-template-areas:
+        "pokemon-1 pokemon-2 pokemon-3"
+        "pokemon-4 pokemon-5 pokemon-6"
+        "pokemon-7 pokemon-8 pokemon-9"
+        "pokemon-10 pokemon-11 pokemon-12"
+        "pokemon-13 pokemon-14 pokemon-15";
+    }
+
+
+    .results-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .pokemon-data-container {
+        width: 90%;
+    }
+
+    .pokemon-types-container {
+        width: 100%;
+        height: 50px;
+    }
+
+    .pokemon-div {
+        width: 50%;
+    }
+
+    .pokemon-photo-container {
+        margin-left: 10px;
+    }
+
+    .pokemon-divtwo {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .pokemon-body-container {
+        width: 100%;
+    }
+
+    .section-title {
+        width: 100%;
+    }
+
+    .slide-container {
+        display: none;
+    }
+
+    .evolutions-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .evolution-img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .wrapper {
+        grid-template-columns: 250px 250px 250px;
+	    grid-template-rows: 350px 350px 350px 350px 350px;
+        justify-content: center;
+    }
+
+    .search-results-container {
+        width: 100%;
+    }
+
+    .results-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-evenly;
+    }
+
+    .pokemon-div {
+        width: 45%;
+    }
+
+    .pokemon-divtwo {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .pokemon-data-container {
+        width: 60%;
+    }
+
+    .evolution-img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .pokemon-info {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .pokemon-img {
+        width: 400px;
+        height: 400px;
+    }
+
+    .pokemon-photo-container {
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+
+    .wrapper {
+        grid-template-columns: 250px 250px 250px 250px 250px;
+	    grid-template-rows: 350px 350px 350px;
+        grid-template-areas:
+        "pokemon-1 pokemon-2 pokemon-3 pokemon-4 pokemon-5"
+        "pokemon-6 pokemon-7 pokemon-8 pokemon-9 pokemon-10"
+        "pokemon-11 pokemon-12 pokemon-13 pokemon-14 pokemon-15";
+    }
+
+    .logo {
+        width: 400px;
+    }
+
+    .search-bar-container {
+        width: 50%;
+    }
+
+    .pokemon-div {
+        width: 30%;
+    }
+
+    .pokemon-data-container {
+        width: 55%;
+    }
+
+    .evolution-img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .pokemon-img {
+        width: 340px;
+        height: 340px;
+    }
+}
+
+@media only screen and (min-width: 1920px) {
+    .pokemon-div {
+        width: 60%;
+    }
+
+    .results-container {
+        width: 40%;
+        margin-bottom: 100px;
+    }
+
+    .pokemon-img {
+        width: 450px;
+        height: 450px;
+    }
+
+    .pokemon-data-container {
+        width: 80%;
+    }
+}

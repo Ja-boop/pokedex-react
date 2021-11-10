@@ -1,0 +1,147 @@
+.search-bar-container {
+	width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 50px;
+}
+
+textarea,
+input[type="text"]{
+  	border-style: solid;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.icon {
+	position: absolute;
+	margin-left: 11px;
+}
+
+.search-bar {
+    width: 110%;
+    background: white;
+	padding-left: 30px;
+	border-top: var(--pokeball-color);
+	border-bottom: #b8b8b8;
+	border-left: black;
+	border-right: black;
+	border-radius: 40px;
+	height: 30px;
+}
+
+::-webkit-input-placeholder {
+	
+	color: var(--secundary-color);
+	font-weight: bold;
+}
+
+.search-bar:focus {
+	outline: none;
+}
+
+.results-container {
+	margin-top: 20px;
+	width: 80%
+}
+
+.result-pokemon-container {
+	margin-bottom: 20px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-top: 20px;
+	border-top: solid var(--pokeball-color);
+	border-bottom: solid #b8b8b8;
+	border-right: solid;
+	border-left: solid;
+	border-radius: 20px;
+}
+
+.pokemon-img {
+	height: 100%;
+	width: 100%;
+}
+
+.result-pokemon-caption {
+	width: 100%;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: center;
+	background-color: var(--pokeball-color);
+	height: 50px;
+	border-top: solid;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.result-pokemon-caption p {
+	text-decoration-line: none;
+	color: black;
+	text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.result-pokemon-caption a {
+	text-decoration: none;
+}
+
+
+.wrapper {
+	display: grid;
+	grid-template-columns: 300px;
+	grid-template-rows: 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px;
+	gap: 70px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+	"pokemon-1"
+	"pokemon-2"
+	"pokemon-3"
+	"pokemon-4"
+	"pokemon-5"
+	"pokemon-6"
+	"pokemon-7"
+	"pokemon-8"
+	"pokemon-9"
+	"pokemon-10"
+	"pokemon-11"
+	"pokemon-12"
+	"pokemon-13"
+	"pokemon-14"
+	"pokemon-15";
+	align-items: center;
+	margin-top: 50px;
+}
+  
+.pokemon-1 { grid-area: pokemon-1; }
+
+.pokemon-2 { grid-area: pokemon-2; }
+
+.pokemon-3 { grid-area: pokemon-3; }
+
+.pokemon-4 { grid-area: pokemon-4; }
+
+.pokemon-5 { grid-area: pokemon-5; }
+
+.pokemon-6 { grid-area: pokemon-6; }
+
+.pokemon-7 { grid-area: pokemon-7; }
+
+.pokemon-8 { grid-area: pokemon-8; }
+
+.pokemon-9 { grid-area: pokemon-9; }
+
+.pokemon-10 { grid-area: pokemon-10; }
+
+.pokemon-11 { grid-area: pokemon-11; }
+
+.pokemon-12 { grid-area: pokemon-12; }
+
+.pokemon-13 { grid-area: pokemon-13; }
+
+.pokemon-14 { grid-area: pokemon-14; }
+
+.pokemon-15 { grid-area: pokemon-15; }
