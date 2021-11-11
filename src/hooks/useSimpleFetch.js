@@ -1,4 +1,5 @@
 import { useState, useEffect, useReducer } from "react";
+import { getPokemonTypes, getPokemonAbilities, getEvoChain } from './services/getPokemonData.js';
 
 export const useFetchOnChange = (fetchResource, fetchIdResource, param, timeout) => {
     const [data, setData] = useState(null);
@@ -90,7 +91,7 @@ export const useFetchReducer = (fetchResource, fetchIdResource, param, timeout) 
                     dispatch({ type: 'FAILURE', payload: error });
                 }
             } else {
-                dispatch({ type: 'INITIAL' })
+                dispatch({ type: 'INITIAL' }) // Si pongo initialState, no limpia la pagina al borrar lo escrito en el buscador de pokemones
             }
 
         }, timeout);
@@ -111,48 +112,11 @@ export const FetchOnlyId = (getResource, fetchIdResource, param, timeout) => {
                 dispatch({ type: 'LOAD' });
                 try {
                     const resource = await fetchIdResource(param);
-                    const POKEMON_TYPES = [];
-                    const POKEMON_ABILITIES = [];
-                    const POKEMON_EVOLUTION_CHAIN = [];
-
-                    console.log(resource)
-
-                    for (let i = 0; i < resource.types.length; i++) {
-                        const type = await getResource(resource.types[i].type.url);
-                        POKEMON_TYPES.push(type.names[4].name)
-                    }
-
-                    for (let i = 0; i < resource.abilities.length; i++) {
-                        const abilitie = await getResource(resource.abilities[i].ability.url);
-                        POKEMON_ABILITIES.push(abilitie.names[5].name);
-                    }
-
-                    const species = await getResource(resource.species.url);
-                    const evolutionChain = await getResource(species.evolution_chain.url);
-
-
-
-                    const firstChain = await getResource(`https://pokeapi.co/api/v2/pokemon/${evolutionChain.chain.species.name}`);
-                    let secondChain = [];
-                    let thirdChain = [];
-
-                    POKEMON_EVOLUTION_CHAIN.push(firstChain)
-
-                    if (evolutionChain.chain.evolves_to.length > 0) {
-                        secondChain = await getResource(`https://pokeapi.co/api/v2/pokemon/${evolutionChain.chain.evolves_to[0].species.name}`) 
-                        POKEMON_EVOLUTION_CHAIN.push(secondChain)
-
-                        if (evolutionChain.chain.evolves_to[0].evolves_to.length > 0) {
-                            thirdChain = await getResource(`https://pokeapi.co/api/v2/pokemon/${evolutionChain.chain.evolves_to[0].evolves_to[0].species.name}`) 
-                            POKEMON_EVOLUTION_CHAIN.push(thirdChain)
-                        }
-                    }
-
                     const POKEMON_DATA = {
                         resource,
-                        tipos: POKEMON_TYPES,
-                        habilidades: POKEMON_ABILITIES,
-                        evoluciones: POKEMON_EVOLUTION_CHAIN,
+                        tipos: await getPokemonTypes(getResource, resource),
+                        habilidades: await getPokemonAbilities(getResource, resource),
+                        evoluciones: await getEvoChain(getResource, resource),
                     }
 
                     dispatch({ type: 'SUCCESS', payload: POKEMON_DATA });
@@ -171,3 +135,4 @@ export const FetchOnlyId = (getResource, fetchIdResource, param, timeout) => {
 
     return state;
 };
+

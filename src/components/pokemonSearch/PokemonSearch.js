@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './pokemonSearch.css';
 import pokeapi from '../../pokeapi';
 import { useFetchReducer } from '../../hooks/useSimpleFetch';
+import { useDebouncedFetch } from '../../hooks/useFetchWithCache';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +20,7 @@ const SearchBar = (props) => {
 
 const PokemonSearch = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const { data, error, loading } = useFetchReducer(pokeapi.searchPokemon, pokeapi.getEachPokemonData, searchTerm, 500);
+    const { data, error, loading } = useDebouncedFetch(pokeapi.searchPokemon, pokeapi.getEachPokemonData, searchTerm, 500);
     let i = 0;
 
     return (
