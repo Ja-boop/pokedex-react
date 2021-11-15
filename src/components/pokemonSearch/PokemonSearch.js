@@ -34,8 +34,8 @@ const PokemonSearch = () => {
                 <div className="wrapper search-results-container">
 
                     {data.map((result) => (
-                        <div className={"pokemon-" + ++i + " result-pokemon-container"} key={result.order}>
-                            <img src={result.sprites.other['official-artwork'].front_default || result.sprites.front_default} alt={result.name} width="100%" height="100%" ></img>
+                        <div className={"pokemon-" + ++i + " result-pokemon-container"} key={result.id}>
+                            <img src={result.image} alt={result.name} width="100%" height="100%" ></img>
 
                             <div className="result-pokemon-caption">
                                 <NavLink to={`/pokemon/${result.id}`}>

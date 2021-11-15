@@ -1,7 +1,7 @@
 import React from 'react';
 import pokeapi from '../../pokeapi';
 import { NavLink, useParams } from 'react-router-dom';
-import { FetchOnlyId } from '../../hooks/useSimpleFetch';
+import { useDebouncedFetchOnlyId } from '../../hooks/useFetchWithCache';
 import Slider from 'react-touch-drag-slider';
 import './pokemonSearch.css';
 import './pokemon.css';
@@ -34,7 +34,7 @@ function insertDecimal(num) {
 
 const Pokemon = () => {
     const { id } = useParams();
-    const { data, error, loading } = FetchOnlyId(pokeapi.searchPokemon, pokeapi.getPokemonById, id, 500);
+    const { data, error, loading } = useDebouncedFetchOnlyId(pokeapi.searchPokemon, pokeapi.getPokemonById, id, 500);
 
     if (loading) return <p>Cargando</p>;
 
@@ -48,9 +48,9 @@ const Pokemon = () => {
 
                     <div className="pokemon-div">
                         <div className="result-pokemon-container pokemon-photo-container">
-                            <img className="pokemon-img" src={data.resource.sprites.other['official-artwork'].front_default || data.resource.sprites.front_default} alt={data.resource.name} ></img>
+                            <img className="pokemon-img" src={data.image} alt={data.name} ></img>
                             <div className="result-pokemon-caption">
-                                <p>{data.resource.name} N°{data.resource.id}</p>
+                                <p>{data.name} N°{data.id}</p>
                             </div>
                         </div>
                     </div>
@@ -63,16 +63,16 @@ const Pokemon = () => {
                         <div className="result-pokemon-container pokemon-data-container">
                             <div className=" pokemon-body-container">
                                 <div className="pokemon-info pokemon-body-info">
-                                    <span>Altura: {insertDecimal(data.resource.height)} m</span>
+                                    <span>Altura: {insertDecimal(data.height)} m</span>
 
-                                    <span>Peso: {insertDecimal(data.resource.weight)} kg</span>
+                                    <span>Peso: {insertDecimal(data.weight)} kg</span>
                                 </div>
                             </div>
 
                             <div className="pokemon-types-container">
                                 <div className="pokemon-types">
                                     {data.tipos.map(tipo => (
-                                        <img className="type-img" src={POKEMON_TIPOS[tipo.names[4].name]} alt={tipo.names[4].name} key={tipo.id} />
+                                        <img className="type-img" src={POKEMON_TIPOS[tipo.name]} alt={tipo.name} key={tipo.id} />
                                     ))}
                                 </div>
                             </div>
@@ -86,7 +86,7 @@ const Pokemon = () => {
 
 
                                     {data.habilidades.map(habilidad => (
-                                        <span key={habilidad.id} >{habilidad.names[5].name}</span>
+                                        <span key={habilidad.id} >{habilidad.name}</span>
                                     ))}
 
                                 </div>
@@ -111,7 +111,7 @@ const Pokemon = () => {
                     >
                         {data.evoluciones.map(evolucion => (
                             <div className="slide-caption-image" key={evolucion.id}>
-                                <img src={evolucion.sprites.other['official-artwork'].front_default || evolucion.sprites.front_default} key={evolucion.id} alt={evolucion.name} />
+                                <img src={evolucion.image} key={evolucion.id} alt={evolucion.name} />
                             </div>
                         ))}
                     </Slider>
@@ -121,7 +121,7 @@ const Pokemon = () => {
                 <div className="evolutions-container">
                     {data.evoluciones.map(evolucion => (
                         <div className="result-pokemon-container" key={evolucion.id} >
-                            <img className="evolution-img" src={evolucion.sprites.other['official-artwork'].front_default || evolucion.sprites.front_default} key={evolucion.id} alt={evolucion.name} />
+                            <img className="evolution-img" src={evolucion.image} key={evolucion.id} alt={evolucion.name} />
                         </div>
                     ))}
                 </div>

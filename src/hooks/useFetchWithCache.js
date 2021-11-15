@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useContext } from 'react';
 import { CacheContext } from '../CacheContext';
+import { getPokemonTypes, getPokemonAbilities, getEvoChain } from './services/getPokemonData.js';
 
 const initialState = { loading: false, data: null, error: null };
 
@@ -24,6 +25,8 @@ export const useDebouncedFetch = (fetchResource, fetchIdResource, param, timeout
     const cache = useContext(CacheContext);
     const [state, dispatch] = useReducer(fetchReducer, initialState);
 
+    // Quise separar el proceso de hacer el objeto POKEMON_DATA en una funcion aparte, pero me hacia el objeto 15 veces al llamar a la funcion 
+
     useEffect(() => {
         if (cache.state[param]) {
             dispatch({ type: 'SUCCESS', payload: cache.state[param] });
@@ -34,7 +37,9 @@ export const useDebouncedFetch = (fetchResource, fetchIdResource, param, timeout
             if (param) {
                 dispatch({ type: 'LOAD' });
                 try {
+                    const POKEMON_DATA = [];
                     let pokemones = [];
+
                     const resource = await fetchResource();
                     const filterPokemones = resource.results.filter(pokemon => {
                         return pokemon.name.includes(param)
@@ -44,10 +49,16 @@ export const useDebouncedFetch = (fetchResource, fetchIdResource, param, timeout
 
                     for (let i = 0; i < slicePokemones.length; i++) {
                         pokemones.push(await fetchIdResource(filterPokemones[i].url))
-                    }
 
-                    dispatch({ type: 'SUCCESS', payload: pokemones });
-                    cache.dispatch({ type: 'SET_CACHE', payload: { key: param, value: pokemones } });
+                        POKEMON_DATA.push({
+                            id: pokemones[i].id,
+                            name: pokemones[i].name,
+                            image: pokemones[i].sprites.other['official-artwork'].front_default || pokemones[i].sprites.front_default,
+                        });
+                    }
+                    
+                    dispatch({ type: 'SUCCESS', payload: POKEMON_DATA });
+                    cache.dispatch({ type: 'SET_CACHE', payload: { key: param, value: POKEMON_DATA } });
                 } catch (error) {
                     dispatch({ type: 'FAILURE', payload: error });
                 }
@@ -97,6 +108,53 @@ export function useInstantFetch(fetchResource, fetchIdResource, param) {
         };
         fetch();
     }, [param, cache, fetchResource, fetchIdResource]);
+
+    return state;
+};
+
+export const useDebouncedFetchOnlyId = (getResource, fetchIdResource, param, timeout) => {
+    const [state, dispatch] = useReducer(fetchReducer, initialState);
+    const cache = useContext(CacheContext);
+
+    useEffect(() => {
+        if (cache.state[param]) {
+            dispatch({ type: 'SUCCESS', payload: cache.state[param] });
+            return;
+        };
+
+
+        const timeoutId = setTimeout(async () => {
+            if (param) {
+                dispatch({ type: 'LOAD' });
+                try {
+                    const resource = await fetchIdResource(param);
+                    const POKEMON_DATA = {
+                        id: resource.id,
+                        name: resource.name,
+                        height: resource.height,
+                        weight: resource.weight,
+                        image: resource.sprites.other['official-artwork'].front_default || resource.sprites.front_default,
+                        tipos: await getPokemonTypes(getResource, resource),
+                        habilidades: await getPokemonAbilities(getResource, resource),
+                        evoluciones: await getEvoChain(getResource, resource),
+                    }
+
+                    console.log(POKEMON_DATA);
+
+                    dispatch({ type: 'SUCCESS', payload: POKEMON_DATA });
+                    cache.dispatch({ type: 'SET_CACHE', payload: { key: param, value: POKEMON_DATA } });
+                } catch (error) {
+                    dispatch({ type: 'FAILURE', payload: error });
+                }
+            } else {
+                dispatch({ type: 'INITIAL' })
+            }
+
+        }, timeout);
+        return () => {
+            clearTimeout(timeoutId);
+        }
+    }, [getResource, cache, fetchIdResource, param, timeout]);
 
     return state;
 };

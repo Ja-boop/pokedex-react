@@ -13,7 +13,7 @@ function App() {
         <div className="container">
           <Header />
           <Switch>
-            <Route path={["/home", "/"]} exact>
+            <Route path={["/home", "/", "/pokedex-react"]} exact>
               <PokemonSearch />
             </Route>
             <Route path="/pokemon/:id">

@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <React.Fragment>
         <div className="logo-container">
-            <a href="/home">
+            <a href="/pokedex-react">
                 <img className="logo" src={logo} alt="pokedex" ></img>
             </a>
         </div>
