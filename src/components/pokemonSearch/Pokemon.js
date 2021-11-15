@@ -1,6 +1,6 @@
 import React from 'react';
 import pokeapi from '../../pokeapi';
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDebouncedFetchOnlyId } from '../../hooks/useFetchWithCache';
 import Slider from 'react-touch-drag-slider';
 import './pokemonSearch.css';

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './pokemonSearch.css';
 import pokeapi from '../../pokeapi';
-import { useFetchReducer } from '../../hooks/useSimpleFetch';
 import { useDebouncedFetch } from '../../hooks/useFetchWithCache';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
@@ -27,7 +26,7 @@ const PokemonSearch = () => {
         <React.Fragment>
             <div className="search-bar-container">
                 <FontAwesomeIcon icon={faSearch} className="icon" />
-                <SearchBar onChange={(e) => setSearchTerm(e.target.value.toLowerCase().match(/^[A-Za-z\-]+/))} value={searchTerm} />
+                <SearchBar onChange={(e) => setSearchTerm(e.target.value.toLowerCase().match(/^[A-Za-z-]+/))} value={searchTerm} />
             </div>
             {loading && <p>Cargando</p>}
             {data && (
