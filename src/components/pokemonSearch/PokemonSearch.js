@@ -8,14 +8,14 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const SearchBar = (props) => {
     return (
-        <input className="search-bar"
+        <input className="search-bar pokeball-border"
             type="text"
             name="searchBar"
             id="search-bar"
             onChange={props.onChange}
         />
     )
-}
+};
 
 const PokemonSearch = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -33,12 +33,12 @@ const PokemonSearch = () => {
                 <div className="wrapper search-results-container">
 
                     {data.map((result) => (
-                        <div className={"pokemon-" + ++i + " result-pokemon-container"} key={result.id}>
+                        <div className={"pokemon-" + ++i + " result-pokemon-container pokeball-border"} key={result.id}>
                             <img src={result.image} alt={result.name} width="100%" height="100%" ></img>
 
                             <div className="result-pokemon-caption">
                                 <NavLink to={`/pokemon/${result.id}`}>
-                                    <p>{result.name}</p>
+                                    <p className="pokedex-paragraph">{result.name}</p>
                                 </NavLink>
                             </div>
                         </div>

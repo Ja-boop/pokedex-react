@@ -20,4 +20,11 @@ body {
   align-items: center;
 }
 
-
+.pokeball-border {
+	background-color: white;
+	border-top: solid var(--pokeball-color);
+	border-bottom: solid #b8b8b8;
+	border-right: solid;
+	border-left: solid;
+	border-radius: 20px;
+}

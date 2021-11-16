@@ -45,22 +45,17 @@ const Pokemon = () => {
             <>
                 <div className="results-container">
 
-
                     <div className="pokemon-div">
-                        <div className="result-pokemon-container pokemon-photo-container">
+                        <div className="result-pokemon-container pokemon-photo-container pokeball-border">
                             <img className="pokemon-img" src={data.image} alt={data.name} ></img>
                             <div className="result-pokemon-caption">
-                                <p>{data.name} N°{data.id}</p>
+                                <p className="pokedex-paragraph">{data.name} N°{data.id}</p>
                             </div>
                         </div>
                     </div>
 
-
-
-
                     <div className="pokemon-divtwo">
-
-                        <div className="result-pokemon-container pokemon-data-container">
+                        <div className="result-pokemon-container pokemon-data-container pokeball-border">
                             <div className=" pokemon-body-container">
                                 <div className="pokemon-info pokemon-body-info">
                                     <span>Altura: {insertDecimal(data.height)} m</span>
@@ -78,20 +73,16 @@ const Pokemon = () => {
                             </div>
                         </div>
 
-                        <div className="result-pokemon-container pokemon-data-container">
+                        <div className="result-pokemon-container pokemon-data-container pokeball-border">
 
                             <h2 className="section-title" >Habilidades</h2>
                             <div className="pokemon-body-container">
                                 <div className="pokemon-info pokemon-body-info">
-
-
                                     {data.habilidades.map(habilidad => (
                                         <span key={habilidad.id} >{habilidad.name}</span>
                                     ))}
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -101,7 +92,7 @@ const Pokemon = () => {
                 </div>
 
                 <h1 className="section-title" >Evoluciones</h1>
-                <div className="result-pokemon-container slide-container">
+                <div className="result-pokemon-container slide-container pokeball-border">
 
                     <Slider
                         activeIndex={0}
@@ -120,7 +111,7 @@ const Pokemon = () => {
 
                 <div className="evolutions-container">
                     {data.evoluciones.map(evolucion => (
-                        <div className="result-pokemon-container" key={evolucion.id} >
+                        <div className="result-pokemon-container pokeball-border" key={evolucion.id} >
                             <img className="evolution-img" src={evolucion.image} key={evolucion.id} alt={evolucion.name} />
                         </div>
                     ))}
