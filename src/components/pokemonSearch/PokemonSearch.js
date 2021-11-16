@@ -31,7 +31,6 @@ const PokemonSearch = () => {
             {loading && <p>Cargando</p>}
             {data && (
                 <div className="wrapper search-results-container">
-
                     {data.map((result) => (
                         <div className={"pokemon-" + ++i + " result-pokemon-container pokeball-border"} key={result.id}>
                             <img src={result.image} alt={result.name} width="100%" height="100%" ></img>
@@ -43,10 +42,8 @@ const PokemonSearch = () => {
                             </div>
                         </div>
                     ))}
-
                 </div>
             )}
-
             {error && <div>{error}</div>}
         </React.Fragment>
     )
