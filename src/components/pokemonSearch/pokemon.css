@@ -22,17 +22,6 @@
     height: 100%;
 }
 
-.pokemon-body-info ul {
-    padding: 0;
-    text-align: center;
-}
-
-.pokemon-body-info li {
-    list-style: none;
-    margin-bottom: 20px;
-}
-
-
 .type-img {
     width: 80px;
     height: 30px;

@@ -1,8 +1,8 @@
 @media only screen and (min-width: 768px) {
+
     .search-bar {
         height: 40px;
     }
-
 
     .wrapper {
         grid-template-columns: 200px 200px 200px;
@@ -15,7 +15,6 @@
         "pokemon-10 pokemon-11 pokemon-12"
         "pokemon-13 pokemon-14 pokemon-15";
     }
-
 
     .results-container {
         width: 100%;
