@@ -13,7 +13,7 @@ const SearchBar = (props) => {
             name="searchBar"
             id="search-bar"
             onChange={props.onChange}
-            placeholder="¡Busca a tu pokemon preferido y haz click en su nombre!"
+            placeholder="¡Buscá a tu pokemon preferido y haz click en su nombre!"
         />
     )
 };
